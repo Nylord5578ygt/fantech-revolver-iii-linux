@@ -1,0 +1,7 @@
+# Fantech Revolver III (WGP12S) & ShanWan Gamepad Linux Fix
+# Register Wired (0289:0200) and 2.4GHz Wireless (0283:0001) X-Input IDs with xpad driver
+
+ACTION=="add", SUBSYSTEM=="module", KERNEL=="xpad", RUN+="/bin/sh -c 'echo 0289 0200 ff > /sys/bus/usb/drivers/xpad/new_id 2>/dev/null || true; echo 0283 0001 ff > /sys/bus/usb/drivers/xpad/new_id 2>/dev/null || true'"
+
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0289", ATTR{idProduct}=="0200", MODE="0660", TAG+="uaccess", RUN+="/usr/bin/modprobe xpad", RUN+="/bin/sh -c 'echo 0289 0200 ff > /sys/bus/usb/drivers/xpad/new_id 2>/dev/null || true'"
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0283", ATTR{idProduct}=="0001", MODE="0660", TAG+="uaccess", RUN+="/usr/bin/modprobe xpad", RUN+="/bin/sh -c 'echo 0283 0001 ff > /sys/bus/usb/drivers/xpad/new_id 2>/dev/null || true'"
