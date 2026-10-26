@@ -6,3 +6,8 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.log
+
+# Local development and verification tools
+scripts/
+.githooks/
+.github/
